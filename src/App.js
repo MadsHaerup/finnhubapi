@@ -4,17 +4,17 @@ import Sentiment from "./Components/Sentiment";
 require('dotenv').config();
 
 function App() {
-  const [name, setName] = useState(" ");
+  const [ticker, setTicker] = useState(" ");
 
   const handleInput = (event) => {
-    setName(event.target.value);
+    setTicker(event.target.value);
   };
 
   return (
     <div className="App">
-      <input type="text" onKeyPress={(e) => e.key === "Enter" ? handleInput(e) : null}  />
+      <input type="text"  onKeyPress={(e) => e.key === "Enter" ? handleInput(e) : null}  />
       {/* <Economic/> */}
-      <Sentiment name={name}/>
+      <Sentiment ticker={ticker}/>
     </div>
   );
 }
