@@ -1,6 +1,7 @@
 import { useState } from "react";
 // import Economic from "./Components/Economic";
 import Sentiment from "./Components/Sentiment";
+import StockChart from "./Components/StockChart";
 require('dotenv').config();
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <input type="text"  onKeyPress={(e) => e.key === "Enter" ? handleInput(e) : null}  />
       {/* <Economic/> */}
       <Sentiment ticker={ticker}/>
+      <StockChart ticker={ticker}/>
     </div>
   );
 }
