@@ -1,7 +1,10 @@
 import { useState } from "react";
+import IpoCalender from "./Pages/IpoCalendar";
 // import Economic from "./Components/Economic";
 import Sentiment from "./Components/Sentiment";
 import StockChart from "./Components/StockChart";
+import { Router } from "@reach/router";
+import Navbar from "./Components/Navbar";
 require('dotenv').config();
 
 function App() {
@@ -13,10 +16,14 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar/>
       <input type="text"  onKeyPress={(e) => e.key === "Enter" ? handleInput(e) : null}  />
       {/* <Economic/> */}
-      <Sentiment ticker={ticker}/>
-      <StockChart ticker={ticker}/>
+      <Router>
+      <Sentiment path="/" ticker={ticker}/>
+      <StockChart path="/" ticker={ticker}/>
+      <IpoCalender path="ipocalendar"/>
+      </Router>
     </div>
   );
 }
