@@ -80,9 +80,7 @@ export default function StockChart({ ticker }) {
 			}
 			timeoutId = setTimeout(update, 60000);
 		}
-
 		update();
-
 		// cleanUp function, stop calling the function over and over agian
 		return () => {
 			clearTimeout(timeoutId);
@@ -91,7 +89,6 @@ export default function StockChart({ ticker }) {
 
 	return (
 		<>
-		
 			<Chart className="chart" options={chart.options} series={series} type="candlestick" width="100%" />
 		</>
 	);

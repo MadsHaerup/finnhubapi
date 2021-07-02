@@ -18,7 +18,7 @@ export default function Insider({ticker}) {
     }
     getInsider();
 
-  }, [setItems,api, ticker])
+  }, [setItems, ticker])
 
   return (
   <table style={{width:"100%"}}>

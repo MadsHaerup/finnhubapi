@@ -1,27 +1,19 @@
 
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
 var api = process.env.REACT_APP_API_KEY;
 
 export default function IpoCalendar() {
-
   const [items, setItems] = useState([]);
-
   useEffect(() => {
-  
     async function getIpos(){
-
       const response = await axios.get(`https://finnhub.io/api/v1/calendar/ipo?from=2021-01-01&to=2022-12-30&token=${api}`)
-
       console.log("ipo",response);
       setItems(response.data.ipoCalendar)
     }
     getIpos();
-
-  }, [setItems,api])
-
-
+  }, [setItems])
   return (
 
 <table style={{width:"100%"}}>
@@ -46,7 +38,5 @@ export default function IpoCalendar() {
   </tr>
       ))}
 </table>
-      
-   
   )
 }

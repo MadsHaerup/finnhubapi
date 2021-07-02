@@ -1,12 +1,11 @@
 import { useState } from "react";
 import IpoCalender from "./Pages/IpoCalendar";
-// import Economic from "./Components/Economic";
-import Sentiment from "./Components/Sentiment";
-import StockChart from "./Components/StockChart";
+import Economic from "./Components/Economic";
+import Stock from "./Pages/Stock";
 import { Router } from "@reach/router";
 import Navbar from "./Components/Navbar";
-import CompanyProfile from './Components/CompanyProfile';
-import Insider from './Components/Insider';
+import Home from "./Pages/Home";
+
 require('dotenv').config();
 
 function App() {
@@ -18,15 +17,23 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar/>
+      <Navbar
+      ipo="Ipo"
+      ipoLink="ipocalendar"
+      stock="Stocks"
+      stockLink="stocks"
+      economic="Economic Calendar"
+      economicLink="economic"
+      home="Home"
+      homeLink="/"
+
+      />
       <input type="text"  onKeyPress={(e) => e.key === "Enter" ? handleInput(e) : null}  />
-      {/* <Economic/> */}
       <Router>
-      {/* <CompanyProfile path="/" ticker={ticker}/> */}
-      <Insider path="/" ticker={ticker}/>
-      {/* <StockChart path="/" ticker={ticker}/>
-      <Sentiment path="/" ticker={ticker}/> */}
-      <IpoCalender path="ipocalendar"/>
+        <Home path="/"/>
+        <Stock ticker={ticker} path="stocks"/>
+        <Economic path="economic"/>
+        <IpoCalender path="ipocalendar"/>
       </Router>
     </div>
   );

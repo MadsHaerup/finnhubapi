@@ -18,7 +18,7 @@ export default function CompanyProfile({ticker}) {
     }
     getProfile();
 
-  }, [setItems,api, ticker])
+  }, [setItems, ticker])
 
   return (
   <article style={{width:"100%"}}>

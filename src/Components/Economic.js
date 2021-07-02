@@ -15,7 +15,7 @@ export default function Economic() {
       setItems(response.data.economicCalendar);
     })
 
-  }, [setItems])
+  }, [setItems,api])
 
 
 
