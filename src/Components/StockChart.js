@@ -50,6 +50,7 @@ export default function StockChart({ ticker }) {
 		);
 		return response.json();
 	}
+	
 
 	const [series, setSeries] = useState([
 		{
@@ -64,6 +65,8 @@ export default function StockChart({ ticker }) {
 				const data = await getStocks();
         const ticker = data.chart.result[0];
 				const quote = ticker.indicators.quote[0];
+				const symbol = data.chart.result[0].meta.symbol;
+				const price = data.chart.result[0].meta.regularMarketPrice;
 				const prices = ticker.timestamp.map((timestamp, index) => ({
 					x: new Date(timestamp * 1000),
 					// O, H, L, C
@@ -72,7 +75,7 @@ export default function StockChart({ ticker }) {
 
 				setSeries([
 					{
-						data: prices,
+						data: prices, symbol, price
 					},
 				]);
 			} catch (error) {
@@ -87,8 +90,11 @@ export default function StockChart({ ticker }) {
 		};
 	}, [ticker]);
 
+	// var symbol = series.data.symbol;
+	// console.log("symbol", symbol)
 	return (
 		<>
+		{/* <h2>{symbol}</h2> */}
 			<Chart className="chart" options={chart.options} series={series} type="candlestick" width="100%" />
 		</>
 	);

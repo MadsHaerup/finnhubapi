@@ -19,7 +19,6 @@ export default function MarketNews() {
   const handleChange = (e) => {
     const result = items.filter(item => item.category === e.target.value)
     console.log(result);
-
     setFilteredItems(result)
   }
 
@@ -32,13 +31,25 @@ export default function MarketNews() {
       <option value="technology">Tech</option>
     </select>
     {    
-      filteredItems?.map((filteredItem)=>(
-      <div key={filteredItem.id}>
-        <h2>{filteredItem.headline} | {filteredItem.datetime} </h2>
-        <span>{filteredItem.category} </span>
-        <p>{filteredItem.summary} </p>
+    items ? 
+    
+    items.map((item)=>(
+      <div key={item.id}>
+        <h2>{item.headline} | {item.datetime} </h2>
+        <span>{item.category} </span>
+        <p>{item.summary} </p>
       </div>
       ))
+      :
+    filteredItems?.map((filteredItem)=>(
+    <div key={filteredItem.id}>
+      <h2>{filteredItem.headline} | {filteredItem.datetime} </h2>
+      <span>{filteredItem.category} </span>
+      <p>{filteredItem.summary} </p>
+    </div>
+    ))
+    
+   
     }
     </>
   )
