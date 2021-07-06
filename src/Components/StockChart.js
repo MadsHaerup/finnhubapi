@@ -1,6 +1,5 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-
 import Chart from 'react-apexcharts';
 
 var api_key = process.env.REACT_APP_API_KEY_YAHOO;
@@ -36,9 +35,7 @@ const round = number => {
 export default function StockChart({ ticker }) {
 	async function getStocks() {
 		const response = await fetch(
-			`https://yahoo-finance-low-latency.p.rapidapi.com/v8/finance/chart/${
-				ticker ? ticker : 'FB'
-			}`,
+			`https://yahoo-finance-low-latency.p.rapidapi.com/v8/finance/chart/${ticker}`,
 			{
 				method: 'GET',
         params: {range: 'max', region: 'US', events: 'div,split'},
@@ -48,8 +45,9 @@ export default function StockChart({ ticker }) {
 				},
 			}
 		);
+	
 		return response.json();
-	}
+	} 
 	
 
 	const [series, setSeries] = useState([
@@ -59,7 +57,7 @@ export default function StockChart({ ticker }) {
 	]);
 
 	useEffect(() => {
-		let timeoutId;
+		// let timeoutId;
 		async function update() {
 			try {
 				const data = await getStocks();
@@ -67,6 +65,7 @@ export default function StockChart({ ticker }) {
 				const quote = ticker.indicators.quote[0];
 				const symbol = data.chart.result[0].meta.symbol;
 				const price = data.chart.result[0].meta.regularMarketPrice;
+				const prevPrice = data.chart.result[0].meta.chartPreviousClose;
 				const prices = ticker.timestamp.map((timestamp, index) => ({
 					x: new Date(timestamp * 1000),
 					// O, H, L, C
@@ -75,26 +74,30 @@ export default function StockChart({ ticker }) {
 
 				setSeries([
 					{
-						data: prices, symbol, price
+						data: prices, symbol, price, prevPrice
 					},
 				]);
 			} catch (error) {
 				console.log(error);
 			}
-			timeoutId = setTimeout(update, 60000);
+			// timeoutId = setTimeout(update, 60000);
 		}
 		update();
 		// cleanUp function, stop calling the function over and over agian
 		return () => {
-			clearTimeout(timeoutId);
+			// clearTimeout(timeoutId);
 		};
 	}, [ticker]);
 
-	// var symbol = series.data.symbol;
-	// console.log("symbol", symbol)
+	var chartSymbol = series[0].symbol;
+	var chartPrice = series[0].price;
+	var prevPrice = series[0].prevPrice;
 	return (
 		<>
-		{/* <h2>{symbol}</h2> */}
+		<div style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
+			<h2>{chartSymbol}</h2>
+			{prevPrice < chartPrice ? <h3 style={{color:"green"}}>{chartPrice + '💲'}</h3> : <h3 style={{color:"red"}}>{chartPrice + '💥'}</h3>  }
+		</div>
 			<Chart className="chart" options={chart.options} series={series} type="candlestick" width="100%" />
 		</>
 	);

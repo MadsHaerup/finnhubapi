@@ -25,22 +25,20 @@ export default function MarketNews() {
   return (
     <>
     <select name="news" id="news" onChange={handleChange}>
-      <option value="general">General</option>
+      <option value="">All</option>
       <option value="top news">Top News</option>
       <option value="business">Business</option>
-      <option value="technology">Tech</option>
     </select>
     {    
-    items ? 
-    
-    items.map((item)=>(
-      <div key={item.id}>
-        <h2>{item.headline} | {item.datetime} </h2>
-        <span>{item.category} </span>
-        <p>{item.summary} </p>
-      </div>
-      ))
-      :
+    // items ? 
+    // items.map((item)=>(
+    //   <div key={item.id}>
+    //     <h2>{item.headline} | {item.datetime} </h2>
+    //     <span>{item.category} </span>
+    //     <p>{item.summary} </p>
+    //   </div>
+    //   ))
+    //   :
     filteredItems?.map((filteredItem)=>(
     <div key={filteredItem.id}>
       <h2>{filteredItem.headline} | {filteredItem.datetime} </h2>

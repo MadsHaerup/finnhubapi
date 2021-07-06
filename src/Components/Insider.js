@@ -19,27 +19,52 @@ export default function Insider({ticker}) {
     getInsider();
 
   }, [setItems, ticker])
+ 
 
   return (
+    <>
+    {
+      window.innerWidth < '600' ?
+      <details>
+        {items?.map((item)=>(
+          <ul>
+              <li>{item.name}</li>
+              <li>{item.share}</li>
+              <li>{item.change}</li>
+              <li>{item.filingDate}</li>
+              <li>{item.transactionDate}</li>
+              <li>{item.transactionPrice}</li>
+          </ul>
+      ))}
+      </details>
+
+      :
+    
   <table style={{width:"100%"}}>
-    <tr>
-    <th>Name</th>
-    <th>Shares</th>
-    <th>Change</th>
-    <th>Filling date</th>
-    <th>Transaction date</th>
-    <th>Transaction Price</th>
-  </tr>
-    {items?.map((item)=>(
+    <thead>
       <tr>
-        <td>{item.name}</td>
-        <td>{item.share}</td>
-        <td>{item.change}</td>
-        <td>{item.filingDate}</td>
-        <td>{item.transactionDate}</td>
-        <td>{item.transactionPrice}</td>
+        <th>Name</th>
+        <th>Shares</th>
+        <th>Change</th>
+        <th>Filling date</th>
+        <th>Transaction date</th>
+        <th>Transaction Price</th>
       </tr>
+    </thead>
+    {items?.map((item)=>(
+      <tbody>
+        <tr>
+          <td>{item.name}</td>
+          <td>{item.share}</td>
+          <td>{item.change}</td>
+          <td>{item.filingDate}</td>
+          <td>{item.transactionDate}</td>
+          <td>{item.transactionPrice}</td>
+        </tr>
+      </tbody>
     ))}
   </table>
+  }
+  </>
   )
 }

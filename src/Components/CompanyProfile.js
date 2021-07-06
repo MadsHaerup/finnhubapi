@@ -11,7 +11,7 @@ export default function CompanyProfile({ticker}) {
   
     async function getProfile(){
 
-      const response = await axios.get(`https://finnhub.io/api/v1/stock/profile2?symbol=${ticker || "FB"}&token=${api}`)
+      const response = await axios.get(`https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=${api}`)
 
       console.log("profile",response);
       setItems(response.data)
