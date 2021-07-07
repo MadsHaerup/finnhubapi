@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import ProfileContainer from './CompanyProfile.styles';
+import Title from '../title/Title';
 var api = process.env.REACT_APP_API_KEY;
 
 export default function CompanyProfile({ticker}) {
@@ -11,7 +12,7 @@ export default function CompanyProfile({ticker}) {
   
     async function getProfile(){
 
-      const response = await axios.get(`https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=${api}`)
+      const response = await axios.get(`https://finnhub.io/api/v1/stock/profile2?symbol=${ticker === " " ? "fb" : ticker }&token=${api}`)
 
       console.log("profile",response);
       setItems(response.data)
@@ -21,7 +22,9 @@ export default function CompanyProfile({ticker}) {
   }, [setItems, ticker])
 
   return (
-  <article style={{width:"100%"}}>
+  <>
+  <Title title="Company Profile"/>
+  <ProfileContainer>
     <img src={item.logo} alt="logo" />
     <p>{item.name} | {item.ticker} | {item.country}</p>
     <a href={item.weburl} target="_blank" rel="noreferrer" >{item.weburl}</a>
@@ -29,6 +32,7 @@ export default function CompanyProfile({ticker}) {
     <p>Exchange: {item.exchange} </p>
     <p>Market Cap: {item.marketCapitalization}</p>
     <p>Industry: {item.finnhubIndustry}</p>
-  </article>
+  </ProfileContainer>
+  </>
   )
 }

@@ -35,7 +35,7 @@ const round = number => {
 export default function StockChart({ ticker }) {
 	async function getStocks() {
 		const response = await fetch(
-			`https://yahoo-finance-low-latency.p.rapidapi.com/v8/finance/chart/${ticker}`,
+			`https://yahoo-finance-low-latency.p.rapidapi.com/v8/finance/chart/${ticker === " " ? "fb" : ticker }`,
 			{
 				method: 'GET',
         params: {range: 'max', region: 'US', events: 'div,split'},

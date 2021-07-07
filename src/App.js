@@ -3,7 +3,7 @@ import IpoCalender from "./Pages/IpoCalendar";
 import Economic from "./Components/Economic";
 import Stock from "./Pages/Stock";
 import { Router } from "@reach/router";
-import Navbar from "./Components/Navbar";
+import Navbar from "./Components/navbar/Navbar";
 import Home from "./Pages/Home";
 import { GlobalProvider } from "./context/GlobalState";
 import Watchlist from './Pages/Watchlist';
@@ -19,13 +19,7 @@ function App() {
 
   return (
     <GlobalProvider>
-        <Navbar
-        ipo="Ipo" ipoLink="ipocalendar"
-        stock="Stocks" stockLink="stocks"
-        economic="Economic Calendar" economicLink="economic"
-        home="Home" homeLink="/"
-        watchlist="Watchlist" watchlistLink="watchlist"
-        />
+        <Navbar/>
 
         <input type="text"  onKeyPress={(e) => e.key === "Enter" ? handleInput(e) : null}  />
 
@@ -33,8 +27,8 @@ function App() {
           <Home path="/"/>
           <Stock ticker={ticker} path="stocks"/>
           <Watchlist path="watchlist"/>
-          <Economic path="economic"/>
-          <IpoCalender path="ipocalendar"/>
+          <Economic path="calendar"/>
+          <IpoCalender path="ipo"/>
         </Router>
     </GlobalProvider>
   );

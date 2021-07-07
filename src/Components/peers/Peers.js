@@ -1,36 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Cardview from './cardview/Cardview';
-
+import PeerContainer from './Peers.styles';
+import Title from '../title/Title';
 var api = process.env.REACT_APP_API_KEY;
 
 export default function Peers({ticker}) {
-
   const [items, setItems] = useState([]);
-
   useEffect(() => {
-  
     async function getPeers(){
-
-      const response = await axios.get(`https://finnhub.io/api/v1/stock/peers?symbol=${ticker}&token=${api}`)
-
+      const response = await axios.get(`https://finnhub.io/api/v1/stock/peers?symbol=${ticker === " " ? "fb" : ticker }&token=${api}`)
       console.log("profile",response);
       setItems(response.data)
     }
     getPeers();
-
   }, [setItems, ticker])
 
   return (
-  // <article style={{width:"100vw"}}>
-  <Cardview>
-
-    <h2>Peers</h2>
+    <>
+  <Title title="Peers"/>
+  <PeerContainer items={items}>
     {items?.map((item)=>(
     <p>{item} </p>
     ))}
-  </Cardview>
-  // </article>
-
+  </PeerContainer>
+  </>
   )
 }

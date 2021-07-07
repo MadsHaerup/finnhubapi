@@ -11,7 +11,7 @@ export default function Insider({ticker}) {
   
     async function getInsider(){
 
-      const response = await axios.get(`https://finnhub.io/api/v1/stock/insider-transactions?symbol=${ticker || "FB"}&token=${api}`)
+      const response = await axios.get(`https://finnhub.io/api/v1/stock/insider-transactions?symbol=${ticker === " " ? "fb" : ticker }&token=${api}`)
 
       console.log("Insider",response);
       setItems(response.data.data)

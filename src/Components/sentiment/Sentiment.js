@@ -1,6 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import sum from '../Helpers/Sum';
+import sum from '../../Helpers/Sum';
+import SentimentContainer from './Sentiments.styles';
+import Title from '../title/Title';
+import { FcReddit } from 'react-icons/fc';
 
 export default function Sentiment({ticker}) {
   const api = process.env.REACT_APP_API_KEY;
@@ -8,17 +11,11 @@ export default function Sentiment({ticker}) {
 
   useEffect(() => {
     async function fetchData(){
-      const response = await axios.get(`https://finnhub.io/api/v1/stock/social-sentiment?symbol=${ticker === " " ? "spy" : ticker }&token=${api}`, { json: true })
+      const response = await axios.get(`https://finnhub.io/api/v1/stock/social-sentiment?symbol=${ticker === " " ? "fb" : ticker }&token=${api}`, { json: true })
       console.log("response", response.data)
       setItems(response.data.reddit);
     }
     fetchData();
-    // axios.get(`https://finnhub.io/api/v1/stock/social-sentiment?symbol=${ticker === " " ? "spy" : ticker }&token=${api}`, { json: true })
-    // .then((response) =>{
-    //   console.log(response.data)
-    //   setItems(response.data.reddit);
-    // })
-
   }, [setItems,ticker,api])
 
   const mentions = items.map((item)=>(item.mention));
@@ -39,13 +36,16 @@ export default function Sentiment({ticker}) {
   
   
   return (
-    <div>
+    <>
+    <Title title="Reddit Sentiment"/>
+    <SentimentContainer>
+      <FcReddit style={{fontSize:"2rem"}}/>
       <p>Mentions on Reddit: {getSum}</p>
       <p> In the last {mentions.length} hours</p>
-
-      <p>{getposscore}</p>
-      <p>{getnegscore}</p>
-      <p>{getposscore < getnegscore  ? "Bearish sentiment" : getposscore === getnegscore ? "Neutral sentiment" : "Bullish sentiment"} </p>
-    </div>
+      <p>Positive Score: {getposscore}</p>
+      <p>Negative Score: {getnegscore}</p>
+      <p>Reddit Sentiment: {getposscore < getnegscore  ? "Bearish" : getposscore === getnegscore ? "Neutral" : "Bullish"} </p>
+    </SentimentContainer>
+    </>
   )
 }
