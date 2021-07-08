@@ -3,7 +3,7 @@ import { GlobalContext } from "../context/GlobalState";
 
 export default function Btn({ticker}) {
 
-  const {
+const {
     removeStockFromWatchlist,
   } = useContext(GlobalContext);
 

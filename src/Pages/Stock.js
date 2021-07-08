@@ -1,33 +1,29 @@
-import React, {useContext} from 'react';
-import { GlobalContext } from '../context/GlobalState';
-
+import React, {useState} from 'react';
 import StockChart from '../Components/StockChart';
 import CompanyProfile from '../Components/companyProfile/CompanyProfile';
 import Sentiment from '../Components/sentiment/Sentiment';
 import Insider from '../Components/Insider';
 import Peers from '../Components/peers/Peers';
 import Financials from '../Components/Financials';
+import Input from '../Components/input/Input';
+import { navigate } from "@reach/router";
 
-export default function Stock({ticker}) {
+export default function Stock() {
+  const [ticker, setTicker] = useState(" ");
 
-  const {addStockToWatchlist, watchlist} = useContext(GlobalContext);
-
-  let onWatchlist = watchlist.find(obj => obj === ticker);
-  console.log('ticker',ticker)
-
-  const watchlistDisabled = onWatchlist ? true : false;
+  const handleInput = (event) => {
+    setTicker(event.target.value);
+    // navigate(`stocks/${event.target.value}`)
+    
+  };
 
   return (
     <>
+      <Input handleInput={handleInput} ticker={ticker}/>
+    
       <div>
-        <button 
-        disabled={watchlistDisabled}
-        onClick={()=>addStockToWatchlist(ticker)}> Add to Watchlist</button>
-      </div>
-
-      <div>
-        <StockChart ticker={ticker}/>
-          <Peers ticker={ticker}/>
+          <StockChart ticker={ticker}/>
+          <Peers ticker={ticker} />
           <Financials ticker={ticker} />
           <CompanyProfile ticker={ticker}/>
           <Sentiment ticker={ticker}/>

@@ -15,12 +15,13 @@ export default function Peers({ticker}) {
     getPeers();
   }, [setItems, ticker])
 
+
   return (
     <>
   <Title title="Peers"/>
   <PeerContainer items={items}>
     {items?.map((item)=>(
-    <p>{item} </p>
+    {item}
     ))}
   </PeerContainer>
   </>

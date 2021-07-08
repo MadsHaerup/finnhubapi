@@ -96,7 +96,7 @@ export default function StockChart({ ticker }) {
 		<>
 		<div style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
 			<h2>{chartSymbol}</h2>
-			{prevPrice < chartPrice ? <h3 style={{color:"green"}}>{chartPrice + '💲'}</h3> : <h3 style={{color:"red"}}>{chartPrice + '💥'}</h3>  }
+			{prevPrice < chartPrice ? <h3 style={{color:"green"}}>{chartPrice + '💲'}</h3> : <h3 style={{color:"red"}}>{chartPrice + '🔻'}</h3>  }
 		</div>
 			<Chart className="chart" options={chart.options} series={series} type="candlestick" width="100%" />
 		</>

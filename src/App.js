@@ -1,4 +1,3 @@
-import { useState } from "react";
 import IpoCalender from "./Pages/IpoCalendar";
 import Economic from "./Components/Economic";
 import Stock from "./Pages/Stock";
@@ -11,25 +10,19 @@ import Watchlist from './Pages/Watchlist';
 require('dotenv').config();
 
 function App() {
-  const [ticker, setTicker] = useState(" ");
-
-  const handleInput = (event) => {
-    setTicker(event.target.value);
-  };
+  
 
   return (
     <GlobalProvider>
-        <Navbar/>
-
-        <input type="text"  onKeyPress={(e) => e.key === "Enter" ? handleInput(e) : null}  />
-
-        <Router>
-          <Home path="/"/>
-          <Stock ticker={ticker} path="stocks"/>
-          <Watchlist path="watchlist"/>
-          <Economic path="calendar"/>
-          <IpoCalender path="ipo"/>
-        </Router>
+      <Navbar/>
+      <Router>
+        <Home path="/"/>
+        <Stock path="stocks"/>
+        {/* <Stock path="stocks/:name"/> */}
+        <Watchlist path="watchlist"/>
+        <Economic path="calendar"/>
+        <IpoCalender path="ipo"/>
+      </Router>
     </GlobalProvider>
   );
 }

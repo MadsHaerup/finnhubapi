@@ -1,36 +1,38 @@
+import * as AiIcons from 'react-icons/ai';
+
 export const NavbarData = [
   {
     title: 'Home',
     path: '/',
-    // icon: <AiIcons.AiFillHome />,
+    icon: <AiIcons.AiOutlineHome />,
     cName: 'nav-text',
     id: 1
   },
   {
-    title: 'Ipo',
+    title: "Ipo's",
     path: 'ipo',
-    // icon: <AiIcons.AiFillHome />,
+    icon: <AiIcons.AiOutlineCalendar />,
     cName: 'nav-text',
     id: 2
   },
   {
-    title: 'Stock',
+    title: 'Stocks',
     path: 'stocks',
-    // icon: <AiIcons.AiFillHome />,
+    icon: <AiIcons.AiOutlineStock />,
     cName: 'nav-text',
     id: 3
   },
   {
     title: 'Watchlist',
     path: 'watchlist',
-    // icon: <AiIcons.AiFillHome />,
+    icon: <AiIcons.AiOutlineUnorderedList />,
     cName: 'nav-text',
     id: 4
   },
   {
     title: 'Calendar',
     path: 'calendar',
-    // icon: <AiIcons.AiFillHome />,
+    icon: <AiIcons.AiTwotoneCalendar />,
     cName: 'nav-text',
     id: 5
   }
