@@ -10,7 +10,6 @@ import Watchlist from './Pages/Watchlist';
 require('dotenv').config();
 
 function App() {
-  
 
   return (
     <GlobalProvider>
@@ -18,7 +17,7 @@ function App() {
       <Router>
         <Home path="/"/>
         <Stock path="stocks"/>
-        {/* <Stock path="stocks/:name"/> */}
+        <Stock path="stocks/:name"/>
         <Watchlist path="watchlist"/>
         <Economic path="calendar"/>
         <IpoCalender path="ipo"/>

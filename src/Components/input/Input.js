@@ -2,8 +2,6 @@ import React, {useContext} from 'react';
 import { GlobalContext } from '../../context/GlobalState';
 import { InputContainer, InputField, Button} from './Input.styles';
 
-
-
 export default function Input({handleInput, ticker}) {
 
   const {addStockToWatchlist, watchlist} = useContext(GlobalContext);

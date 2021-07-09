@@ -4,7 +4,7 @@ import PeerContainer from './Peers.styles';
 import Title from '../title/Title';
 var api = process.env.REACT_APP_API_KEY;
 
-export default function Peers({ticker}) {
+export default function Peers({ticker, setTicker}) {
   const [items, setItems] = useState([]);
   useEffect(() => {
     async function getPeers(){
@@ -17,13 +17,10 @@ export default function Peers({ticker}) {
 
 
   return (
-    <>
-  <Title title="Peers"/>
-  <PeerContainer items={items}>
-    {items?.map((item)=>(
-    {item}
-    ))}
-  </PeerContainer>
+  <>
+    <Title title="Peers"/>
+    <PeerContainer items={items} setTicker={setTicker} />
   </>
   )
 }
+ 

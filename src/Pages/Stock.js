@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState} from 'react';
 import StockChart from '../Components/StockChart';
 import CompanyProfile from '../Components/companyProfile/CompanyProfile';
 import Sentiment from '../Components/sentiment/Sentiment';
@@ -6,16 +6,19 @@ import Insider from '../Components/Insider';
 import Peers from '../Components/peers/Peers';
 import Financials from '../Components/Financials';
 import Input from '../Components/input/Input';
-import { navigate } from "@reach/router";
+// import { navigate } from "@reach/router";
 
 export default function Stock() {
   const [ticker, setTicker] = useState(" ");
 
-  const handleInput = (event) => {
-    setTicker(event.target.value);
-    // navigate(`stocks/${event.target.value}`)
-    
-  };
+
+    const handleInput = (event) => {
+      // let isMounted = true;
+      // if (isMounted) {
+      //   navigate(`stocks/${event.target.value}`)
+      // }
+      setTicker(event.target.value);
+    };
 
   return (
     <>
@@ -23,7 +26,7 @@ export default function Stock() {
     
       <div>
           <StockChart ticker={ticker}/>
-          <Peers ticker={ticker} />
+          <Peers ticker={ticker} setTicker={setTicker} />
           <Financials ticker={ticker} />
           <CompanyProfile ticker={ticker}/>
           <Sentiment ticker={ticker}/>

@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components';
 
-export default function PeerContainer({items}) {
+export default function PeerContainer({items, setTicker}) {
   return (
     <Container>
       {items?.map((item)=>(
-        <PeerElement >
-        {item}
+        <PeerElement onClick={e => setTicker(e.target.value)} value={item} >          
+       {item}
         </PeerElement>
       ))}
     </Container>
@@ -17,7 +17,7 @@ const Container = styled.div`
 display: flex;
 overflow-y: scroll;
 `
-const PeerElement = styled.div`
+const PeerElement = styled.button`
     padding: 0.5rem;
     border-radius: 15%;
     background-image: linear-gradient( 135deg,#FCCF31 10%,#F55555 100%);
