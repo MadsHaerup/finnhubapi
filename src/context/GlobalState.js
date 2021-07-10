@@ -4,8 +4,8 @@ import AppReducer from "./AppReducer";
 // initial state
 const initialState = {
   watchlist: localStorage.getItem("watchlist")
-    ? JSON.parse(localStorage.getItem("watchlist"))
-    : [],
+  ? JSON.parse(localStorage.getItem("watchlist"))
+  : [],
 };
 
 // create context
@@ -20,12 +20,13 @@ export const GlobalProvider = (props) => {
   }, [state]);
 
   // actions
-  const addStockToWatchlist = (ticker) => {
-    dispatch({ type: "ADD_STOCK_TO_WATCHLIST", payload: ticker });
+  const addStockToWatchlist = (ticker, chartPrice) => {
+    dispatch({ type: "ADD_STOCK_TO_WATCHLIST", payload: ticker + chartPrice });
+    // dispatch({ type: "ADD_STOCK_TO_WATCHLIST", payload: chartPrice });
   };
 
-  const removeStockFromWatchlist = (ticker) => {
-    dispatch({ type: "REMOVE_STOCK_FROM_WATCHLIST", payload: ticker });
+  const removeStockFromWatchlist = (ticker, chartPrice) => {
+    dispatch({ type: "REMOVE_STOCK_FROM_WATCHLIST", payload: ticker + chartPrice });
   };
 
   return (

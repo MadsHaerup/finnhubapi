@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import { GlobalContext } from '../../context/GlobalState';
 import { InputContainer, InputField, Button} from './Input.styles';
 
-export default function Input({handleInput, ticker}) {
+export default function Input({handleInput, ticker, chartPrice}) {
 
   const {addStockToWatchlist, watchlist} = useContext(GlobalContext);
   let onWatchlist = watchlist.find(obj => obj === ticker);
@@ -13,7 +13,7 @@ export default function Input({handleInput, ticker}) {
       <InputField type="text" placeholder="Search for a stock" onKeyPress={(e) => e.key === "Enter" ? handleInput(e) : null}  />
       <Button 
         disabled={watchlistDisabled}
-        onClick={()=>addStockToWatchlist(ticker)}
+        onClick={()=>addStockToWatchlist(ticker, chartPrice)}
         Text="Add to Watchlist"
         />
     </InputContainer>

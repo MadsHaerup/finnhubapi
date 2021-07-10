@@ -12,20 +12,20 @@ export default function Stock() {
 
   const [ticker, setTicker] = useState(" ");
   
-    const handleInput = (event) => {
-      setTicker(event.target.value);
-    };
+    // const handleInput = (event) => {
+    //   setTicker(event.target.value);
+    // };
 
   return (
     <>
-      <Input handleInput={handleInput} ticker={ticker}/>
+      {/* <Input handleInput={handleInput} ticker={ticker} chartPrice={chartPrice} /> */}
     
       <div>
-          <StockChart ticker={ticker}/>
+          <StockChart ticker={ticker} setTicker={setTicker} />
           <Peers ticker={ticker} setTicker={setTicker} />
           <Financials ticker={ticker} />
           <CompanyProfile ticker={ticker}/>
-          <PatternRegcognition ticker={ticker}/>
+          {/* <PatternRegcognition ticker={ticker}/> */}
           <Sentiment ticker={ticker}/>
           <Insider ticker={ticker}/>
       </div>

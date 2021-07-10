@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
+import Input from '../Components/input/Input';
 
 var api_key = process.env.REACT_APP_API_KEY_YAHOO;
 
@@ -32,7 +33,13 @@ const chart = {
 const round = number => {
 	return number ? +number.toFixed(2) : null;
 };
-export default function StockChart({ ticker }) {
+
+
+export default function StockChart({ ticker, setTicker }) {
+	const handleInput = (event) => {
+		setTicker(event.target.value);
+	};
+
 	async function getStocks() {
 		const response = await fetch(
 			`https://yahoo-finance-low-latency.p.rapidapi.com/v8/finance/chart/${ticker === " " ? "fb" : ticker }`,
@@ -94,6 +101,8 @@ export default function StockChart({ ticker }) {
 	var prevPrice = series[0].prevPrice;
 	return (
 		<>
+			<Input handleInput={handleInput} ticker={ticker} chartPrice={chartPrice} />
+
 		<div style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
 			<h2>{chartSymbol}</h2>
 			{prevPrice < chartPrice ? <h3 style={{color:"green"}}>{chartPrice + '💲'}</h3> : <h3 style={{color:"red"}}>{chartPrice + '🔻'}</h3>  }
